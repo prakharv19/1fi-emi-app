@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, Route, Routes, useParams } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 function ProductList({ products }) {
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-8 md:px-8">
@@ -67,7 +70,7 @@ function ProductDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/products/${slug}`)
+    fetch(`${API_URL}/products/${slug}`)
       .then((response) => response.json())
       .then((data) => {
         setProduct(data);
@@ -276,7 +279,7 @@ function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch(`${API_URL}/products`)
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
